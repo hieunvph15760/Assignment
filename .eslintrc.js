@@ -10,7 +10,7 @@ module.exports = {
     },
     "rules": {
         semi: ["error", "always"],
-        quotes: ["error", "double"],
+        quotes: ["error", "double", { "allowTemplateLiterals": true }],
         indent: ["error", 4],
         "eol-last": ["error", "never"],
         "linebeak-style": 0
