@@ -49,15 +49,6 @@
     transition: 0.3s;
 }
 
-.blog {
-    transition: 0.4s;
-}
-
-.title-blog {
-    transition: 0.4s;
-}
-
 .blog:hover .title-blog {
     display: block;
-    transition: 0.4s;
 }
