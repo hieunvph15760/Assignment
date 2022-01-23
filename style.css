@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.menu-top {
+    color: #b5aec4;
+}
+
+.ul {
+    color: #1e1e27;
+}
+
+.ul li a {
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.ul li {
+    padding: 0px 15px;
+}
+
+.banner {
+    height: 500px;
+    background-image: url(./img/banner.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.mt-32 {
+    color: #1e1e27;
+    font-weight: 500;
+}
+
+.text-6xl {
+    font-weight: 500;
+}
+
+.category {
+    border: 1px solid #ededed;
+}
+
+.product {
+    border-radius: 4px;
+    border: 1px solid #ededed;
+    transition: 0.3s;
+}
+
+.product:hover .cart {
+    display: block;
+    transition: 0.3s;
+}
+
+.blog {
+    transition: 0.4s;
+}
+
+.title-blog {
+    transition: 0.4s;
+}
+
+.blog:hover .title-blog {
+    display: block;
+    transition: 0.4s;
+}
