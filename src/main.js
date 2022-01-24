@@ -1,15 +1,20 @@
 import Navigo from "navigo";
 import Home from "./pages/home";
-import Page from "./pages/about";
+import All_products from "./pages/products";
+import Contact from "./pages/contact";
 const router = new Navigo("/", { linksSelector: "a" });
 const print = (content) => {
-    document.querySelector("#app").innerHTML = content;
+    document.querySelector("#app").innerHTML = content.render();
 };
 router.on({
     "/": () => {
-        print(Home.render());
+        print(Home);
     },
-    "/about": () => {
-        print(Page.render());
+    "/products": () => {
+        print(All_products);
+    },
+    "/contact": () => {
+        print(Contact);
     }
 });
+router.resolve();

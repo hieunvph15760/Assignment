@@ -52,3 +52,7 @@
 .blog:hover .title-blog {
     display: block;
 }
+
+.information {
+    border: 1px solid #ededed;
+}
