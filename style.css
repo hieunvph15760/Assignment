@@ -56,3 +56,22 @@
 .information {
     border: 1px solid #ededed;
 }
+
+.border-post {
+    height: 2px;
+    width: 72px;
+    background-color: #0d0d0d;
+    margin-left: 92px;
+    margin-top: 5px;
+    transition: 0.3s;
+}
+
+.hover_post:hover .border-post {
+    background-color: red;
+    width: 35px;
+    transition: 0.3s;
+}
+
+.border_title_post {
+    border: 1px solid #ededed;
+}

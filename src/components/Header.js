@@ -24,7 +24,7 @@ const Header = {
                     <a href="/products">SẢN PHẨM</a>
                 </li>
                 <li>
-                    <a href="">BÀI VIẾT</a>
+                    <a href="/post">BÀI VIẾT</a>
                 </li>
                 <li>
                     <a href="/contact">LIÊN HỆ</a>
