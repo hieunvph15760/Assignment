@@ -14,7 +14,7 @@ const Header = {
     <div class="w-full h-auto py-5">
         <div class="max-w-screen-lg h-auto m-auto flex justify-between">
             <div class="">
-                <img src="./img/logo.png" alt="">
+                <img src="../../img/logo.png" alt="">
             </div>
             <ul class="ul w-auto flex justify-between items-center">
                 <li>
