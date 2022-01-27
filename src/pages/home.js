@@ -6,13 +6,13 @@ import Posts from "../components/Posts";
 import Footer from "../components/Footer";
 
 const Home = {
-    render() {
+    async render() {
         return /*html*/ `
             ${Header.render()}
             ${Slider.render()}
-            ${Products.render()}
+            ${await Products.render()}
             ${Banner.render()}
-            ${Posts.render()}
+            ${await Posts.render()}
             ${Footer.render()}
         `;
     }
