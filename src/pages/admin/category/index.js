@@ -1,8 +1,8 @@
 import navAdmin from "../../../components/navAdmin";
-import { getAll, remove } from "../../../API/Products";
-const AdminProducts = {
+import { getAllCate, remove } from "../../../API/Category";
+const AdminCategory = {
         async render() {
-            const { data } = await getAll();
+            const { data } = await getAllCate();
             return /* html */ `
             ${navAdmin.render()}
             <header class="bg-white shadow">
@@ -10,11 +10,11 @@ const AdminProducts = {
             <div class="lg:flex lg:items-center lg:justify-between">
             <div class="flex-1 min-w-0">
                 <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                    Quản lý sản phẩm
+                    Quản lý danh mục
                 </h2>
             </div>
             <div class="mt-5 flex lg:mt-0 lg:ml-4">
-                <a href="/admin/addProduct" class="sm:ml-3">
+                <a href="/admin/addCategory" class="sm:ml-3">
                     <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               <!-- Heroicon name: solid/check -->
               <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -59,18 +59,6 @@ const AdminProducts = {
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Tên
               </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Img
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Giá
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Sale
-            </th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Cate_ID
-        </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
         </th>
             </tr>
@@ -85,23 +73,11 @@ const AdminProducts = {
             </div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap">
-            <div class="text-sm text-gray-900">${item.product_name}</div>
+            <div class="text-sm text-gray-900">${item.Cate_name}</div>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap">
-           <img class="w-36 rounded-sm" src="${item.img}">
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            ${item.price}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            ${item.sale}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          ${item.cate_id}
-        </td>
           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
           <div class="bg-red-500 w-12 h-6 flex justify-center items-cente rounded-sm">
-          <a href="/admin/${item.id}/editProduct" class="text-white">Sửa</a>
+          <a href="/admin/edit/${item.id}/Category" class="text-white">Sửa</a>
           </div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"> 
@@ -139,4 +115,4 @@ const AdminProducts = {
         });
     }
 };
-export default AdminProducts;
+export default AdminCategory;

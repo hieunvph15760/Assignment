@@ -1,6 +1,8 @@
 import navAdmin from "../../../components/navAdmin";
+import {get, edit } from "../../../API/Products";
 const editProduct = {
-    render() {
+    async render(id) {
+        const { data } = await get(id);
         return /*html*/ `
         ${navAdmin.render()}
         <header class="bg-white shadow">
@@ -39,30 +41,50 @@ const editProduct = {
     </div>
         </div>
     </header>
-        <form class="ml-6 my-10">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Tên</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Ảnh</label>
-            <input type="file" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Giá</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Sale</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Mô tả</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
-        </div>
-        <button type="submit" class="btn btn-primary bg-[#0d6efd]">Sửa</button>
-    </form>
+    <form class="ml-6 my-10 form-editProduct" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Tên</label>
+        <input type="text" class="form-control" id="addNamePro" value = ${data.product_name}>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Ảnh</label>
+        <input type="file" class="form-control" id="addImagePro" value = ${data.img}>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Giá</label>
+        <input type="text" class="form-control" id="addPricePro" value = ${data.price}>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Sale</label>
+        <input type="text" class="form-control" id="addSalePro" value = ${data.sale}>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Mô tả</label>
+        <input type="text" class="form-control" id="addDescPro" value = ${data.desc}>
+    </div>
+    <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Cate_id</label>
+    <input type="text" class="form-control" id="cate_id" value = ${data.cate_id}>
+</div>
+    <button type="submit" class="btn btn-primary bg-[#0d6efd]" id="btn_Pro">Sửa</button>
+</form>
         `;
+    },
+    afterRender(id) {
+        const form_editPro = document.querySelector(".form-editProduct");
+        form_editPro.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const product = {
+                id: id,
+                "product_name": document.querySelector("#addNamePro").value,
+                "img": document.querySelector("#addImagePro").value,
+                "price": document.querySelector("#addPricePro").value,
+                "sale": document.querySelector("#addSalePro").value,
+                "desc": document.querySelector("#addDescPro").value,
+                "cate_id": document.querySelector("#cate_id").value
+            };
+            edit(product);
+        });
     }
 };
 export default editProduct;

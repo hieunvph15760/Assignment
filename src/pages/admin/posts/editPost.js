@@ -1,6 +1,8 @@
 import navAdmin from "../../../components/navAdmin";
+import {get, edit } from "../../../API/Post";
 const editPost = {
-    render() {
+    async render(id) {
+        const { data } = await get(id);
         return /*html*/ `
         ${navAdmin.render()}
         <header class="bg-white shadow">
@@ -39,22 +41,35 @@ const editPost = {
     </div>
         </div>
     </header>
-        <form class="ml-6 my-10">
+        <form class="ml-6 my-10 form-edit" enctype="multipart/form-data">
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Tên</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1" class="form-label">Img</label>
+            <input type="file" class="form-control" id="img" aria-describedby="emailHelp" value=${data.img}>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Title</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
+            <input type="text" class="form-control" id="title" value=${data.title}>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Nội dung</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
+            <input type="text" class="form-control" id="content" value=${data.content}>
         </div>
         <button type="submit" class="btn btn-primary bg-[#0d6efd]">Sửa</button>
     </form>
         `;
+    },
+    afterRender(id) {
+        const form__edit = document.querySelector(".form-edit");
+        form__edit.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const post = {
+                id: id,
+                "img": document.querySelector("#img").value,
+                "title": document.querySelector("#title").value,
+                "content": document.querySelector("#content").value,
+            };
+            edit(post);
+        });
     }
 };
 export default editPost;

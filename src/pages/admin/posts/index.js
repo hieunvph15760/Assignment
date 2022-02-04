@@ -1,8 +1,8 @@
 import navAdmin from "../../../components/navAdmin";
-import axios from "axios";
+import { getAll, remove } from "../../../API/Post";
 const AdminPosts = {
         async render() {
-            const { data } = await axios.get("https://61c734ec9031850017547346.mockapi.io/Post");
+            const { data } = await getAll();
             return /* html */ `
             ${navAdmin.render()}
             <header class="bg-white shadow">
@@ -83,12 +83,12 @@ const AdminPosts = {
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
           <div class="bg-red-500 w-12 h-6 flex justify-center items-cente rounded-sm">
-          <a href="/admin/editPost" class="text-white">Sửa</a>
+          <a href="/admin/${item.id}/editPost" class="text-white">Sửa</a>
           </div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"> 
           <div class="bg-red-500 w-12 h-6 flex justify-center items-cente rounded-sm">
-          <a href="#" class="text-white">Xóa</a>
+          <a href="#" data-id="${item.id}" class="text-white btnDelete">Xóa</a>
           </div>
         </td>
         </tr>
@@ -105,6 +105,20 @@ const AdminPosts = {
             </div>
         </main>
         `;
+    },
+    afterRender(){
+        const btnDelete = document.querySelectorAll(".btnDelete");
+        btnDelete.forEach(function(button){
+            button.onclick = function (){
+                console.log(button);
+                const id = button.dataset.id;
+                const confirm = window.confirm("Bạn có muốn xóa không ?");
+                if(confirm){
+                    remove(id);
+                    button.parentNode.parentNode.parentNode.remove();
+                }
+            };
+        });
     }
 };
 export default AdminPosts;

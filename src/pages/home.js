@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import Slider from "../components/Slider";
-import Products from "../components/Products";
+import Products from "../components/content_home";
 import Banner from "../components/Banner";
 import Posts from "../components/Posts";
 import Footer from "../components/Footer";
@@ -15,6 +15,6 @@ const Home = {
             ${await Posts.render()}
             ${Footer.render()}
         `;
-    }
+    },
 };
 export default Home;

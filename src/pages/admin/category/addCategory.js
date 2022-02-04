@@ -1,6 +1,6 @@
+import { add } from "../../../API/Category";
 import navAdmin from "../../../components/navAdmin";
-import { add } from "../../../API/Post";
-const addPost = {
+const addCategory = {
     render() {
         return /*html*/ `
         ${navAdmin.render()}
@@ -9,11 +9,11 @@ const addPost = {
         <div class="lg:flex lg:items-center lg:justify-between">
         <div class="flex-1 min-w-0">
             <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-               Thêm mới bài viết
+               Thêm mới danh mục
             </h2>
         </div>
         <div class="mt-5 flex lg:mt-0 lg:ml-4">
-            <a href="/admin/post" class="sm:ml-3">
+            <a href="/admin/category" class="sm:ml-3">
                 <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <!-- Heroicon name: solid/check -->
           <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -40,34 +40,24 @@ const addPost = {
     </div>
         </div>
     </header>
-    <form class="ml-6 my-10 form-addPost" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Ảnh</label>
-        <input type="file" class="form-control" id="addImg">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Tiêu đề</label>
-        <input type="text" class="form-control" id="addtitle">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Nội dung</label>
-        <input type="text" class="form-control" id="addcontent">
-    </div>
-    <button type="submit" class="btn btn-primary bg-[#0d6efd]" id="btn_Post">Thêm</button>
-</form>
+        <form class="ml-6 my-10 form-addCategory">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Tên</label>
+            <input type="text" class="form-control" id="addCate_name">
+        </div>
+        <button type="submit" class="btn btn-primary bg-[#0d6efd]" id="btn_Pro">Thêm</button>
+    </form>
         `;
     },
     afterRender() {
-        const form_add = document.querySelector(".form-addPost");
-        form_add.addEventListener("submit", (e) => {
+        const form_addCategory = document.querySelector(".form-addCategory");
+        form_addCategory.addEventListener("submit", (e) => {
             e.preventDefault();
-            const post = {
-                "img": document.querySelector("#addImg").value,
-                "title": document.querySelector("#addtitle").value,
-                "content": document.querySelector("#addcontent").value,
+            const category = {
+                "Cate_name": document.querySelector("#addCate_name").value,
             };
-            add(post);
+            add(category);
         });
     }
 };
-export default addPost;
+export default addCategory;

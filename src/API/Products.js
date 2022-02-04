@@ -15,3 +15,7 @@ export const remove = (id) => {
     const url = `/product/${id}`;
     return URL.delete(url);
 };
+export const edit = (product) => {
+    const url = `/product/${product.id}`;
+    return URL.put(url, product);
+};
