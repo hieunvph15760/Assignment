@@ -75,3 +75,17 @@
 .border_title_post {
     border: 1px solid #ededed;
 }
+
+.border-cart {
+    border-top: 1px solid #ededed;
+}
+
+.donhang {
+    border-bottom: 2px solid #dbd2d2;
+    padding-bottom: 10px;
+}
+
+.border-pice {
+    border-bottom: 2px solid #dbd2d2;
+    padding-bottom: 10px;
+}

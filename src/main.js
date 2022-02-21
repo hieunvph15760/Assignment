@@ -6,6 +6,7 @@ import women_products from "./pages/women_products";
 import Product_detail from "./pages/productDetails";
 import Contact from "./pages/contact";
 import Post from "./pages/post";
+import Cart from "./pages/cart";
 import Dashboard from "./pages/admin/dashboard";
 import AdminCategory from "./pages/admin/category";
 import addCategory from "./pages/admin/category/addCategory";
@@ -16,6 +17,12 @@ import editProduct from "./pages/admin/products/editProduct";
 import AdminPost from "./pages/admin/posts";
 import addPost from "./pages/admin/posts/addPost";
 import editPost from "./pages/admin/posts/editPost";
+import signup from "./pages/signup";
+import signin from "./pages/signin";
+import users from "./pages/admin/users";
+import addUser from "./pages/admin/users/addUser";
+import editUser from "./pages/admin/users/editUser";
+import checkOut from "./pages/checkOut";
 const router = new Navigo("/", { linksSelector: "a" });
 const print = async(content, id) => {
     document.querySelector("#app").innerHTML = await content.render(id);
@@ -44,6 +51,9 @@ router.on({
     },
     "/post": () => {
         print(Post);
+    },
+    "/cart": () => {
+        print(Cart);
     },
     "/admin/dashboard": () => {
         print(Dashboard);
@@ -75,5 +85,24 @@ router.on({
     "/admin/:id/editPost": ({ data }) => {
         print(editPost, data.id);
     },
+    "/signup": () => {
+        print(signup);
+    },
+    "/signin": () => {
+        print(signin);
+    },
+    "/admin/users": () => {
+        print(users);
+    },
+    "/admin/addUser": () => {
+        print(addUser);
+    },
+    "/admin/:id/editUser": ({ data }) => {
+        print(editUser, data.id);
+    },
+    "/checkOut": () => {
+        print(checkOut);
+    },
+
 });
 router.resolve();

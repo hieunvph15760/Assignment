@@ -1,11 +1,14 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {get, getAll } from "../API/Products";
+import { addToCart } from "../utils/cart";
+import { toastr } from "toastr";
+import "toastr/build/toastr.min.css";
+
 const productDetail = {
         async render(id) {
             const { data } = await get(id);
             const data2 = await getAll();
-            let i = 0;
             return /*html*/ `
         ${Header.render()}
         <div class="w-full h-auto">
@@ -39,22 +42,20 @@ const productDetail = {
                 ${data.desc}
                 </div>
                 <div class="text-[#b9b4c7] font-medium mb-1">
-                    <del>${data.sale} ₫</del>
+                    <del>${new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(data.price)}</del>
                 </div>
                 <div class="text-[#fe4c50] font-semibold text-2xl mb-5">
-                ${data.price} ₫
+                ${new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(data.price - (data.price * data.sale / 100))}
                 </div>
                 <div class="flex">
                     <div class="text-[#1e1e27] mt-1">
                         Số lượng:
                     </div>
                     <div class="mx-3 border-1 h-10 w-28 flex justify-around">
-                        <button class="font-bold text-4xl -mt-2">-</button>
-                        <input type="text" value="1" class="w-5 text-center mx-2">
-                        <button class="font-bold text-2xl -mt-2">+</button>
-                    </div>
+                        <input type="text" id="inputQuantity" value="1" class="w-5 text-center mx-2">
+                    </div>  
                     <div>
-                        <button class="bg-[#fe4c50] h-10 w-44 rounded-sm text-white">Thêm vào giỏ hàng</button>
+                        <button id="btnAddToCart" class="bg-[#fe4c50] h-10 w-44 rounded-sm text-white">Thêm vào giỏ hàng</button>
                     </div>
                     <div class="w-8 border-1 h-10 leading-10 ml-3 flex justify-center">
                         <button><i class="fas fa-heart text-[#fe4c50]"></i></button>
@@ -68,36 +69,48 @@ const productDetail = {
             </div>
             <div class="flex justify-between mt-3 flex-wrap">
             ${data2.data.map(function(item){
-                i++;
-                if(item.cate_id == data.cate_id){
-                    console.log(i);
-                    return /* html */ `
-                    <div class="product w-60 h-auto text-center my-3 relative">
-                    <img class="h-80" src="${item.img}" alt="">
-                    <div class="align-center text-[#1e1e27] font-medium mb-3">
-                        <a href="/product_detail/${item.id}">${item.product_name}</a>
-                    </div>
-                    <div class="flex justify-center pb-2">
-                        <div class="text-red-500 mr-3 font-bold">
-                        ${item.price} ₫
+                    if(item.categoryId == data.categoryId){
+                      return  /* html */ `
+                        <div class="product w-60 h-auto text-center my-3 relative">
+                        <img class="h-80" src="${item.img}" alt="">
+                        <div class="align-center text-[#1e1e27] font-medium mb-3">
+                            <a href="/product_detail/${item.id}">${item.product_name}</a>
                         </div>
-                        <div>
-                            <del class="text-[#b9b4c7] font-bold"> ${item.sale} ₫</del>
+                        <div class="flex justify-center pb-2">
+                            <div class="text-red-500 mr-3 font-bold">
+                            ${new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(item.price - (item.price * item.sale / 100))}
+                            </div>
+                            <div class="text-[#b9b4c7] font-medium">
+                            <del>${new Intl.NumberFormat("VND", { style: "currency", currency: "VND" }).format(item.price)}</del>
+                            </div>
                         </div>
-                    </div>
-                    <div class="cart w-full h-10 bottom-0 bg-red-500  hidden absolute">
-                        <a href="" class="font-semibold text-white leading-10">THÊM VÀO GIỎ HÀNG</a>
-                    </div>
-                </div>
-
-                    `;
-        }
-            }).join("")}
+                        <div class="cart w-full h-10 bottom-0 bg-red-500  hidden absolute">
+                            <a href="/product_detail/${item.id}" class="font-semibold text-white leading-10">CHI TIẾT SẢN PHẨM</a>
+                        </div>
+                        </div>
+                        `;
+                    }
+                }).join("")
+            }
             </div>
         </div>
     </div>
     ${Footer.render()}
         `;
+    },
+    afterRender(id) {
+        const btnAddToCart = document.querySelector("#btnAddToCart");
+        const inputQuantity = document.querySelector("#inputQuantity");
+        btnAddToCart.addEventListener("click", async() => {
+            if(!localStorage.getItem("user")){
+                alert("Bạn cần đăng nhập để mua hàng !");
+            }else{
+                const { data } = await get(id);
+                addToCart({...data, quantity: +inputQuantity.value }, function() {
+                    toastr.success("Thêm sản phẩm thành công !");
+                });
+            }
+        });
     }
 };
 export default productDetail;

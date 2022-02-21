@@ -22,6 +22,9 @@ const Dashboard = {
         </main>
     </div>
         `;
+    },
+    afterRender() {
+        navAdmin.afterRender();
     }
 };
 export default Dashboard;

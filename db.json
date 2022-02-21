@@ -1,0 +1,154 @@
+{
+    "posts": [{
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644595164/tmm5oiliom9e7xuggsv7.jpg",
+            "title": "Bật mí 10+ cách phối đồ với áo blazer nam ĐƠN GIẢN mà ĐẸP",
+            "content": "Bật mí 10+ cách phối đồ với áo blazer nam ĐƠN GIẢN mà ĐẸP",
+            "id": 1
+        },
+        {
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644595184/rrizi0akkstq2a41dv6t.jpg",
+            "title": "Bật mí 10+ cách phối đồ với áo blazer nam ĐƠN GIẢN mà ĐẸP",
+            "content": "Bật mí 10+ cách phối đồ với áo blazer nam ĐƠN GIẢN mà ĐẸP",
+            "id": 2
+        },
+        {
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644595201/haioclvrapfm0arqq9ht.jpg",
+            "title": "Bật mí 10+ cách phối đồ với áo blazer nam ĐƠN GIẢN mà ĐẸP",
+            "content": "Bật mí 10+ cách phối đồ với áo blazer nam ĐƠN GIẢN mà ĐẸP",
+            "id": 3
+        }
+    ],
+    "products": [{
+            "id": 1,
+            "product_name": "Áo",
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644592016/wcnshdrerzifjezvkydi.png",
+            "price": 499600,
+            "sale": 10,
+            "desc": "Áo",
+            "categoryId": "1"
+        },
+        {
+            "id": 2,
+            "product_name": "Áo khoác chần bông nam",
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644592955/ocrjq3fm6vlko32yluui.png",
+            "price": 999000,
+            "sale": 2,
+            "desc": "Áo khoác trần bông cổ 3 cm, khóa thân trước, túi ngực và túi 2 bên",
+            "categoryId": "1"
+        },
+        {
+            "id": 3,
+            "product_name": "Áo khoác chần bông nam",
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644592994/cecbb4ucggnoyophpi40.png",
+            "price": 499500,
+            "sale": 5,
+            "desc": "Áo khoác trần bông cổ 3 cm, khóa thân trước, túi ngực và túi 2 bên",
+            "categoryId": "1"
+        },
+        {
+            "id": 4,
+            "product_name": "Áo khoác chần bông nam",
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644593053/dgznlxk3sn9him0ui7wt.png",
+            "price": 999000,
+            "sale": 5,
+            "desc": "Áo khoác trần bông cổ 3 cm, khóa thân trước, túi ngực và túi 2 bên",
+            "categoryId": "1"
+        },
+        {
+            "id": 5,
+            "product_name": "Áo khoác chần bông nữ",
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644593234/fvkodicrjuhkgxdka45q.png",
+            "price": 1299000,
+            "sale": 6,
+            "desc": "Áo khoác chần bông dáng ngắn, dài tay, mở khóa thân trước, cổ cao không mũ, chất liệu 100% Nylon",
+            "categoryId": "2"
+        },
+        {
+            "id": 6,
+            "product_name": "Áo khoác chần bông nữ",
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644593284/rjrvwe7gf0tr2o2uxk6r.png",
+            "price": 1299000,
+            "sale": 7,
+            "desc": "Áo khoác chần bông dáng ngắn, dài tay, mở khóa thân trước, cổ cao không mũ, chất liệu 100% Nylon",
+            "categoryId": "2"
+        },
+        {
+            "id": 7,
+            "product_name": "Áo khoác lông vũ nữ",
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644593319/dxqrctiqcbyprlaym1rv.png",
+            "price": 990000,
+            "sale": 2,
+            "desc": "Áo khoác lông vũ dáng ngắn, dài tay, mở khóa thân trước, cổ cao không mũ, chất liệu 100% Nylon",
+            "categoryId": "2"
+        },
+        {
+            "id": 8,
+            "product_name": "Áo khoác lông vũ nữ",
+            "img": "http://res.cloudinary.com/hi-u/image/upload/v1644593366/gaaz84t3rwujwsinnzmy.png",
+            "price": 500000,
+            "sale": 4,
+            "desc": "Áo khoác lông vũ dáng ngắn, dài tay, mở khóa thân trước, cổ cao không mũ, chất liệu 100% Nylon",
+            "categoryId": "2"
+        }
+    ],
+    "categorys": [{
+            "Cate_name": "Nam",
+            "id": 1
+        },
+        {
+            "Cate_name": "Nữ",
+            "id": 2
+        }
+    ],
+    "users": [{
+            "id": 1,
+            "username": "hieu",
+            "email": "nguyenvanhjeu2k2@gmail.com",
+            "password": "$2a$10$SQhDg9.gPD7Y6iUkIEGmQ.LEpkp4PA1VURsDulBylVOt1XXYC0S3q",
+            "vaiTro": "1"
+        },
+        {
+            "email": "nguyenvanhoang2k2@gmail.com",
+            "password": "$2a$10$5FdpgmmXUkmheUlkvlCBX.42AHIwg6SQV0RIGf5qVO5eVf6Hjkgxm",
+            "username": "hieu",
+            "vaiTro": "2",
+            "id": 2
+        },
+        {
+            "email": "hieu123@gmail.com",
+            "password": "$2a$10$DVs/zwHlZr4YLtOeRgh7DO9gE1ozStsEFqv5vyHFjYnxcROMm5Vc2",
+            "username": "hieu123",
+            "vaiTro": "1",
+            "id": 3
+        },
+        {
+            "id": 4,
+            "username": "hieu",
+            "email": "hieuuchiha2k2@gmail.com",
+            "password": "$2a$10$1xM3gW8bInsDkc2gn525Lek3kBYdaUrbwrQofawfKVeR2CUdT8Bnq",
+            "vaiTro": "2"
+        },
+        {
+            "email": "hieudeptrai2k2@gmail.com",
+            "password": "$2a$10$0mizM5WmvpbgoyzxCD2sze9NkgkceEfa0QKTPpDzSoEW5jFyNBwyq",
+            "username": "hieudeptrai",
+            "vaiTro": "2",
+            "id": 5
+        },
+        {
+            "email": "vuphuongnam25122002@gmail.com",
+            "password": "$2a$10$PTtJNTIuY5mYEpSueSdotO75TfIEkA8iiHQvBaCs1ZdPOaTLITeVC",
+            "username": "nguyenvanhieu2k2",
+            "vaiTro": "2",
+            "id": 6
+        },
+        {
+            "email": "viet2k2@gmail.com",
+            "password": "$2a$10$Zg42uXiEddRnHddbvtzZ9uT.newa3EII6Ejr3wYHLz6rp/cokLz9S",
+            "username": "hieufpt",
+            "vaiTro": "2",
+            "id": 7
+        }
+    ],
+    "orders": []
+}

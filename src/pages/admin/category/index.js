@@ -3,6 +3,7 @@ import { getAllCate, remove } from "../../../API/Category";
 const AdminCategory = {
         async render() {
             const { data } = await getAllCate();
+            console.log(data);
             return /* html */ `
             ${navAdmin.render()}
             <header class="bg-white shadow">
@@ -60,6 +61,8 @@ const AdminCategory = {
                 Tên
               </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th></th>
+            <th></th>
         </th>
             </tr>
           </thead>

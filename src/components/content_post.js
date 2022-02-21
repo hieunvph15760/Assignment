@@ -1,7 +1,7 @@
-import axios from "axios";
+import { getAll } from "../API/Post";
 const Content_post = {
         async render() {
-            const { data } = await axios.get("https://61c734ec9031850017547346.mockapi.io/Post");
+            const { data } = await getAll();
             return /*html*/ `
         <div class="w-full h-auto mt-10">
             <div class="max-w-screen-lg m-auto h-auto flex justify-between flex-wrap">

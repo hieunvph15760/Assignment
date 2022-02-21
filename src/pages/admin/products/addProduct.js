@@ -1,7 +1,10 @@
 import { add } from "../../../API/Products";
+import { getAllCate } from "../../../API/Category";
 import navAdmin from "../../../components/navAdmin";
+import axios from "axios";
 const addProduct = {
     render() {
+
         return /*html*/ `
         ${navAdmin.render()}
         <header class="bg-white shadow">
@@ -40,7 +43,7 @@ const addProduct = {
     </div>
         </div>
     </header>
-        <form class="ml-6 my-10 form-addProduct" enctype="multipart/form-data">
+        <form class="ml-6 my-10 form-addProduct">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Tên</label>
             <input type="text" class="form-control" id="addNamePro">
@@ -51,33 +54,64 @@ const addProduct = {
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Giá</label>
-            <input type="text" class="form-control" id="addPricePro">
+            <input type="number" class="form-control" id="addPricePro">
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Sale</label>
-            <input type="text" class="form-control" id="addSalePro">
+            <input type="number" class="form-control" id="addSalePro">
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Mô tả</label>
             <input type="text" class="form-control" id="addDescPro">
         </div>
+        <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Danh mục</label>
+        <div class="input-group mb-3">
+        <select class="custom-select form-control" id="inputGroupSelect02">
+        </select>
+      </div>
+    </div>
         <button type="submit" class="btn btn-primary bg-[#0d6efd]" id="btn_Pro">Thêm</button>
     </form>
         `;
     },
-    afterRender() {
+    async afterRender() {
+        const { data } = await getAllCate();
+        var select = document.querySelector(".custom-select");
+        var result = data.map((item) => {
+            return `
+                <option value="${item.id}">${item.Cate_name}</option>
+            `;
+        }).join("");
+        select.innerHTML = result;
         const form_addPro = document.querySelector(".form-addProduct");
-        form_addPro.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const product = {
-                "product_name": document.querySelector("#addNamePro").value,
-                "img": document.querySelector("#addImagePro").value,
-                "price": document.querySelector("#addPricePro").value,
-                "sale": document.querySelector("#addSalePro").value,
-                "desc": document.querySelector("#addDescPro").value
-            };
-            add(product);
+        const imgProduct = document.querySelector("#addImagePro");
+        imgProduct.addEventListener("change", async(e) => {
+            const file = e.target.files[0];
+            const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/hi-u/image/upload";
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "qdcppaiq");
+            const { data } = await axios.post(CLOUDINARY_API, formData, {
+                headers: {
+                    "Content-Type": "application/x-www-formendcoded",
+                },
+            });
+            form_addPro.addEventListener("submit", (e) => {
+                console.log(select.value);
+                e.preventDefault();
+                const product = {
+                    "product_name": document.querySelector("#addNamePro").value,
+                    "img": data.url,
+                    "price": document.querySelector("#addPricePro").value,
+                    "sale": document.querySelector("#addSalePro").value,
+                    "desc": document.querySelector("#addDescPro").value,
+                    "categoryId": select.value
+                };
+                add(product);
+            });
         });
+
     }
 };
 export default addProduct;

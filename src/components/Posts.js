@@ -1,7 +1,7 @@
-import axios from "axios";
+import { getAll } from "../API/Post";
 const Posts = {
         async render() {
-            const { data } = await axios.get("https://61c734ec9031850017547346.mockapi.io/Post");
+            const { data } = await getAll();
             return /* html */ `
         <div class="w-full h-auto">
         <div class="max-w-screen-lg m-auto">
@@ -13,7 +13,7 @@ const Posts = {
             </div>
             <div class="w-full h-auto flex justify-between my-3 flex-wrap">
             ${data.map((item) => /* html */
-                `<div class="blog w-80 h-80 relative flex justify-center my-3">
+        `<div class="blog w-80 h-80 relative flex justify-center my-3">
                 <img class="w-full h-full" src="${item.img}" alt="">
                 <div class="title-blog bg-white h-auto flex flex-col text-center absolute top-28 rounded-sm hidden">
                     <div class="w-60 px-5 font-medium mt-3">

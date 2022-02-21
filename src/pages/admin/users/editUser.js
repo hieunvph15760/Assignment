@@ -1,7 +1,6 @@
+import {get, edit } from "../../../API/user";
 import navAdmin from "../../../components/navAdmin";
-import {get, edit } from "../../../API/Products";
-import { getAllCate } from "../../../API/Category";
-const editProduct = {
+const editUser = {
     async render(id) {
         const { data } = await get(id);
         return /*html*/ `
@@ -11,11 +10,11 @@ const editProduct = {
         <div class="lg:flex lg:items-center lg:justify-between">
         <div class="flex-1 min-w-0">
             <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-               Sửa sản phẩm
+               Sửa người dùng
             </h2>
         </div>
         <div class="mt-5 flex lg:mt-0 lg:ml-4">
-            <a href="/admin/product" class="sm:ml-3">
+            <a href="/admin/users" class="sm:ml-3">
                 <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <!-- Heroicon name: solid/check -->
           <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -42,61 +41,40 @@ const editProduct = {
     </div>
         </div>
     </header>
-    <form class="ml-6 my-10 form-editProduct" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Tên</label>
-        <input type="text" class="form-control" id="addNamePro" value = ${data.product_name}>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Ảnh</label>
-        <input type="text" class="form-control" id="addImagePro" value = ${data.img}>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Giá</label>
-        <input type="text" class="form-control" id="addPricePro" value = ${data.price}>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Sale</label>
-        <input type="text" class="form-control" id="addSalePro" value = ${data.sale}>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Mô tả</label>
-        <input type="text" class="form-control" id="addDescPro" value = ${data.desc}>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Danh mục</label>
-        <div class="input-group mb-3">
-        <select class="custom-select form-control" id="inputGroupSelect02">
-        </select>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary bg-[#0d6efd]" id="btn_Pro">Sửa</button>
-</form>
+        <form class="ml-6 my-10 form-addProduct">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Tên tài khoản</label>
+            <input type="text" class="form-control" id="addUsername" value = ${data.username}>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Email</label>
+            <input type="text" class="form-control" id="addEmail" value = ${data.email}>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
+            <input type="text" class="form-control" id="addPassword" value = ${data.password}>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Vai trò</label>
+            <input type="text" class="form-control" id="vaiTro" value = ${data.vaiTro}>
+        </div>
+        <button type="submit" class="btn btn-primary bg-[#0d6efd]" id="btn_Pro">Sửa</button>
+    </form>
         `;
     },
-    async afterRender(id) {
-        const { data } = await getAllCate();
-        var select = document.querySelector(".custom-select");
-        var result = data.map((item) => {
-            return `
-                <option value="${item.id}">${item.Cate_name}</option>
-            `;
-        }).join("");
-        select.innerHTML = result;
-        const form_editPro = document.querySelector(".form-editProduct");
-        form_editPro.addEventListener("submit", (e) => {
+    afterRender(id) {
+        const form_addPro = document.querySelector(".form-addProduct");
+        form_addPro.addEventListener("submit", (e) => {
             e.preventDefault();
-            const product = {
+            const user = {
                 id: id,
-                "product_name": document.querySelector("#addNamePro").value,
-                "img": document.querySelector("#addImagePro").value,
-                "price": document.querySelector("#addPricePro").value,
-                "sale": document.querySelector("#addSalePro").value,
-                "desc": document.querySelector("#addDescPro").value,
-                "categoryId": select.value
+                "username": document.querySelector("#addUsername").value,
+                "email": document.querySelector("#addEmail").value,
+                "password": document.querySelector("#addPassword").value,
+                "vaiTro": document.querySelector("#vaiTro").value,
             };
-            edit(product);
+            edit(user);
         });
     }
 };
-export default editProduct;
+export default editUser;

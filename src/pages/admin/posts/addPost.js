@@ -1,5 +1,6 @@
 import navAdmin from "../../../components/navAdmin";
 import { add } from "../../../API/Post";
+import axios from "axios";
 const addPost = {
     render() {
         return /*html*/ `
@@ -40,7 +41,7 @@ const addPost = {
     </div>
         </div>
     </header>
-    <form class="ml-6 my-10 form-addPost" enctype="multipart/form-data">
+    <form class="ml-6 my-10 form-addPost">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Ảnh</label>
         <input type="file" class="form-control" id="addImg">
@@ -59,15 +60,29 @@ const addPost = {
     },
     afterRender() {
         const form_add = document.querySelector(".form-addPost");
-        form_add.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const post = {
-                "img": document.querySelector("#addImg").value,
-                "title": document.querySelector("#addtitle").value,
-                "content": document.querySelector("#addcontent").value,
-            };
-            add(post);
+        const imgPost = document.querySelector("#addImg");
+        imgPost.addEventListener("change", async(e) => {
+            const file = e.target.files[0];
+            const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/hi-u/image/upload";
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "qdcppaiq");
+            const { data } = await axios.post(CLOUDINARY_API, formData, {
+                headers: {
+                    "Content-Type": "application/x-www-formendcoded",
+                },
+            });
+            form_add.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const post = {
+                    "img": data.url,
+                    "title": document.querySelector("#addtitle").value,
+                    "content": document.querySelector("#addcontent").value,
+                };
+                add(post);
+            });
         });
+
     }
 };
 export default addPost;
